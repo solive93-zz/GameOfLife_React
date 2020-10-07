@@ -22,7 +22,10 @@ describe('Cell', () => {
 
     it('Should remain alive when has 2 or 3 alive neighbors', () => {
         const cell = new Cell(CellState.ALIVE);
-        const nextState = cell.getNextState(2);
-        expect(nextState).to.equal(CellState.ALIVE);
+        const nextStateWith2Neighbors = cell.getNextState(2);
+        expect(nextStateWith2Neighbors).to.equal(CellState.ALIVE);
+
+        const nextStateWith3Neighbors = cell.getNextState(3);
+        expect(nextStateWith3Neighbors).to.equal(CellState.ALIVE);
     })
 })
