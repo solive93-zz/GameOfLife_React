@@ -22,4 +22,18 @@ describe('Game of Life', () => {
         
         expect(game.state).to.deep.equal(cellState);
     });
+
+    it('Should retrieve a cell in a given row and column', () => {
+        const gameState = [
+            [DEAD, DEAD, DEAD],
+            [DEAD, DEAD, DEAD],
+            [DEAD, DEAD, DEAD]
+        ];
+
+        const game = new Game(gameState);
+        const cell = game.getCell(0, 0);
+
+        expect(cell).to.be.an.instanceof(Cell);
+        expect(game.cell).to.equal(gameState[0][0]);
+    })
 });

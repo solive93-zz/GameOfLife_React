@@ -6,5 +6,8 @@ export default class Game {
         this.state = state.map(row => row.map(cellState => new Cell(cellState)))
     }
 
+    getCell(row, col) {
+        return this.state[row][col];
+    }
     
 }
