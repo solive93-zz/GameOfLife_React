@@ -12,6 +12,20 @@ describe('Cell', () => {
         expect(deadCell.state).to.equal(CellState.DEAD);
     });
 
+    it('Should throw an error if initialized with an invalid state', () => {
+        expect( () => {
+            const game = new Game(null); 
+        }).to.throw();
+
+        expect( () => {
+            const game = new Game(undefined); 
+        }).to.throw();
+
+        expect( () => {
+            const game = new Game(6); 
+        }).to.throw();
+    });
+
     it('Should die if has fewer than 2 alive neighbors', () => {
         const cell = new Cell(CellState.ALIVE);
         const nextState = cell.getNextState(1);

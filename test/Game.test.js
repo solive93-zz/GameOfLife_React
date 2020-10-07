@@ -1,8 +1,11 @@
 import { expect } from 'chai';
 
-import { DEAD, ALIVE } from '../src/CellState';
 import Game from '../src/Game';
 import Cell from '../src/Cell';
+import CellState from '../src/CellState';
+
+const {ALIVE, DEAD} = CellState;
+
 
 const gameStateOfDeadCells = [
     [DEAD, DEAD, DEAD],
@@ -40,10 +43,18 @@ describe('Game of Life', () => {
         
         const aliveCell = newGame.getCell(1, 1);
         expect(aliveCell).to.be.an.instanceof(Cell);
-        expect(newGame.aliveCell).to.equal(gameStateOf3AliveCells[1][1])
+        expect(newGame.aliveCell).to.equal(gameStateOf3AliveCells[1][1]);
 
         const deadCell = newGame.getCell(2, 1);
         expect(deadCell).to.be.an.instanceof(Cell);
-        expect(newGame.deadCell).to.equal(gameStateOf3AliveCells[2][1])
+        expect(newGame.deadCell).to.equal(gameStateOf3AliveCells[2][1]);
     })
+    /*
+    it('Should return the number of alive neighbors of a given cell', () => {
+        const game = new Game(gameStateOf3AliveCells);
+        const numberOfNeighbors = game.getAliveNeighbors(1, 1);
+
+        expect(numberOfNeighbors).to.equal(3);
+    })
+    */
 });

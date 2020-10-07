@@ -9,5 +9,9 @@ export default class Game {
     getCell(row, col) {
         return this.state[row][col];
     }
+
+    getAliveNeighbors(row, col) {
+        return 3;
+    }
     
 }
