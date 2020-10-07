@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import CellState from '../src/CellState.js';
 
 describe('CellState', () => {
