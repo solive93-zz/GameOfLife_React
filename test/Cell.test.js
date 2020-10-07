@@ -38,6 +38,21 @@ describe('Cell', () => {
         expect(nextStateWith6Neighbors).to.equal(CellState.DEAD);
 
         const nextStateWith8Neighbors = cell.getNextState(8);
+        expect(nextStateWith8Neighbors).to.equal(CellState.DEAD);
+    })
+
+    it('Should come alive with exactly 3 alive neighbors', () => {
+        const cell = new Cell(CellState.DEAD);
+        const nextState = cell.getNextState(3);
+        expect(nextState).to.equal(CellState.ALIVE);
+    })
+
+    it('Should remain dead in any other case', () => {
+        const cell = new Cell(CellState.DEAD);
+        const nextStateWith2Neighbors = cell.getNextState(2);
+        expect(nextStateWith2Neighbors).to.equal(CellState.DEAD);
+
+        const nextStateWith4Neighbors = cell.getNextState(4);
         expect(nextStateWith4Neighbors).to.equal(CellState.DEAD);
     })
 })
