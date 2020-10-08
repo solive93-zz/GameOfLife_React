@@ -20,9 +20,9 @@ export default class Game {
         const rightColumn = col +1;
 
         const isLeftEdgeCell = col == 0;
-        const isRightEdgeCell = col == 2;
+        const isRightEdgeCell = col == (this.state.length -1);
         const isTopEdgeCell = row == 0;
-        const isBottomEdgeCell = row == 2;
+        const isBottomEdgeCell = row == (this.state.length -1);
 
         let aliveNeighbors = this.state[row][col].state == CellState.ALIVE ? -1 : 0;
 
