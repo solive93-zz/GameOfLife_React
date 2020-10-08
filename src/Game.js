@@ -1,4 +1,5 @@
 import Cell from "./Cell";
+import CellState from "./CellState";
 
 export default class Game {
 
@@ -11,7 +12,13 @@ export default class Game {
     }
 
     getAliveNeighbors(row, col) {
-        return 3;
+        let aliveNeighbors = 0;
+        for(let rowIndex = row-1; rowIndex <= row+1; rowIndex++) {
+            for(let cell = col-1; cell <= col+1; cell++) {
+                cell == CellState.ALIVE ? aliveNeighbors++ : aliveNeighbors
+            }
+        }
+        return aliveNeighbors;
     }
     
 }
