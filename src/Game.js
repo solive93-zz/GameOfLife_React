@@ -14,8 +14,8 @@ export default class Game {
     getAliveNeighbors(row, col) {
         const topRow = row -1;
         const thisRow = row;
-        const bottomRow = row+1
-        const leftColumn = col-1
+        const bottomRow = row +1
+        const leftColumn = col -1
         const thisColumn = col;
         const rightColumn = col +1;
 
@@ -33,5 +33,8 @@ export default class Game {
         }
         return aliveNeighbors;
     }
-    
+
+    nextGeneration() {
+        return this.state.map((row, rowIndex) => row.map((cell, colIndex) => new Cell(cell.getNextState(this.getAliveNeighbors(rowIndex, colIndex)))));
+    }
 }

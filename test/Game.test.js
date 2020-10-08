@@ -116,8 +116,24 @@ describe('Game of Life', () => {
         const gameOfDeadCells = new Game(gameStateOfDeadCells);
         const numOfNeighborsInDeadGame = gameOfDeadCells.getAliveNeighbors(0, 2);
         expect(numOfNeighborsInDeadGame).to.equal(0);
+    })
 
+    it('Should return the next state of the game', () => {
+        const game = new Game([
+            [DEAD, ALIVE, DEAD],
+            [DEAD, ALIVE, DEAD],
+            [DEAD, ALIVE, DEAD]
+        ]);
 
+        const nextGeneration = game.nextGeneration();
+
+        const nextState = [
+            [new Cell(DEAD), new Cell(DEAD), new Cell(DEAD)],
+            [new Cell(ALIVE), new Cell(ALIVE), new Cell(ALIVE)],
+            [new Cell(DEAD), new Cell(DEAD), new Cell(DEAD)]
+        ];
+
+        expect(nextGeneration).to.deep.equal(nextState);
     })
     
 });
