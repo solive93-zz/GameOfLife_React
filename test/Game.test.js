@@ -12,6 +12,12 @@ const gameStateOfDeadCells = [
     [DEAD, DEAD, DEAD]
 ];
 
+const gameStateOfAliveCells = [
+    [ALIVE, ALIVE, ALIVE],
+    [ALIVE, ALIVE, ALIVE],
+    [ALIVE, ALIVE, ALIVE]
+];
+
 const gameStateOf3AliveCells = [
     [ALIVE, DEAD, DEAD],
     [DEAD, ALIVE, DEAD],
@@ -53,7 +59,65 @@ describe('Game of Life', () => {
         const game = new Game(gameStateOf3AliveCells);
         const numberOfNeighbors = game.getAliveNeighbors(1, 1);
 
-        expect(numberOfNeighbors).to.equal(3);
+        expect(numberOfNeighbors).to.equal(2);
+    })
+
+    it('Should return the number of alive neighbors of a top-left cell', () => {
+        const game = new Game(gameStateOf3AliveCells);
+        const numberOfNeighbors = game.getAliveNeighbors(0, 0);
+        expect(numberOfNeighbors).to.equal(1);
+
+        const gameOfAliveCells = new Game(gameStateOfAliveCells);
+        const numOfNeighborsInAliveGame = gameOfAliveCells.getAliveNeighbors(0, 0);
+        expect(numOfNeighborsInAliveGame).to.equal(3);
+
+        const gameOfDeadCells = new Game(gameStateOfDeadCells);
+        const numOfNeighborsInDeadGame = gameOfDeadCells.getAliveNeighbors(0, 0);
+        expect(numOfNeighborsInDeadGame).to.equal(0);
+    })
+
+    it('Should return the number of alive neighbors of a bottom-left cell', () => {
+        const game = new Game(gameStateOf3AliveCells);
+        const numberOfNeighbors = game.getAliveNeighbors(2, 0);
+        expect(numberOfNeighbors).to.equal(1);
+
+        const gameOfAliveCells = new Game(gameStateOfAliveCells);
+        const numOfNeighborsInAliveGame = gameOfAliveCells.getAliveNeighbors(2, 0);
+        expect(numOfNeighborsInAliveGame).to.equal(3);
+
+        const gameOfDeadCells = new Game(gameStateOfDeadCells);
+        const numOfNeighborsInDeadGame = gameOfDeadCells.getAliveNeighbors(2, 0);
+        expect(numOfNeighborsInDeadGame).to.equal(0);
+    })
+
+    it('Should return the number of alive neighbors of a top-right cell', () => {
+        const game = new Game(gameStateOf3AliveCells);
+        const numberOfNeighbors = game.getAliveNeighbors(2, 2);
+        expect(numberOfNeighbors).to.equal(1);
+        
+        const gameOfAliveCells = new Game(gameStateOfAliveCells);
+        const numOfNeighborsInAliveGame = gameOfAliveCells.getAliveNeighbors(2, 2);
+        expect(numOfNeighborsInAliveGame).to.equal(3);
+
+        const gameOfDeadCells = new Game(gameStateOfDeadCells);
+        const numOfNeighborsInDeadGame = gameOfDeadCells.getAliveNeighbors(2, 2);
+        expect(numOfNeighborsInDeadGame).to.equal(0);
+    })
+
+    it('Should return the number of alive neighbors of a bottom-right cell', () => {
+        const game = new Game(gameStateOf3AliveCells);
+        const numberOfNeighbors = game.getAliveNeighbors(0, 2);
+        expect(numberOfNeighbors).to.equal(1);
+
+        const gameOfAliveCells = new Game(gameStateOfAliveCells);
+        const numOfNeighborsInAliveGame = gameOfAliveCells.getAliveNeighbors(0, 2);
+        expect(numOfNeighborsInAliveGame).to.equal(3);
+
+        const gameOfDeadCells = new Game(gameStateOfDeadCells);
+        const numOfNeighborsInDeadGame = gameOfDeadCells.getAliveNeighbors(0, 2);
+        expect(numOfNeighborsInDeadGame).to.equal(0);
+
+
     })
     
 });
