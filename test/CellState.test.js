@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import CellState from '../src/CellState.js';
+import CellState from '../game-logic/CellState.js';
 
 describe('CellState', () => {
     it('Should have a ALIVE State', () => {

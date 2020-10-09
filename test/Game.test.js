@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import Game from '../src/Game';
-import Cell from '../src/Cell';
-import CellState from '../src/CellState';
+import Game from '../game-logic/Game';
+import Cell from '../game-logic/Cell';
+import CellState from '../game-logic/CellState';
 
 const {ALIVE, DEAD} = CellState;
 
