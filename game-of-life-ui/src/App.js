@@ -15,7 +15,7 @@ const game = new Game([
   [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
   [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
   [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
-  [DEAD, DEAD, DEAD, ALIVE, ALIVE, ALIVE, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
+  [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
   [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
   [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
   [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD],
@@ -32,16 +32,31 @@ const game = new Game([
 class App extends React.Component {
   
   state = {
-    cells: game.state
+    cells: game.state,
+    running: false,
+    interval: null
   }
 
-  handleClick = () => {
+  runSimulation = () => {
+    this.setRunning();
+    if(!this.state.running) {
+      const timer = setInterval(this.updateGameState, 200)
+      this.setState({interval: timer})  
+    }
+    clearInterval(this.state.interval)
+  }
+
+  updateGameState = () => {
     const nextState = game.nextGeneration();
-    game.state = nextState;
-    this.setState({cells: nextState})
+      game.state = nextState;
+      this.setState({cells: nextState});
   }
 
-  switchState = (rowIndex, colIndex) => {
+  setRunning = () => {
+    this.state.running ? this.setState({running: false}) : this.setState({running: true})
+  }
+
+  switchCellState = (rowIndex, colIndex) => {
     this.setState((prevState) => {
       const cells = prevState.cells.map((row, rowNumber) => (
         row.map((cell, colNumber) => {
@@ -71,7 +86,7 @@ class App extends React.Component {
                 row.map((cell, colIndex) => (
                   <td key={colIndex} 
                       className="cell" 
-                      onClick={() => this.switchState(rowIndex, colIndex)}
+                      onClick={() => this.switchCellState(rowIndex, colIndex)}
                       style={{background: cell.state === ALIVE ? 'white' : '#212121'}}>
                   </td>
                 ))
@@ -81,7 +96,7 @@ class App extends React.Component {
         }
         </tbody>
       </table>
-      <button onClick={this.handleClick}>Click Me</button>
+      <button onClick={() => this.runSimulation() }> {this.state.running ? "Stop" : "Play!"} </button>
     </div>
   );
   }
