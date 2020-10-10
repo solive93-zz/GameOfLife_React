@@ -12,3 +12,30 @@
   height: 15px;
   width: 15px;
 }
+
+.header {
+  width: 100vw;
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-group {
+  display: inline-flex;
+  justify-content: space-evenly;
+  padding: 1em;
+
+}
+
+.item {
+  margin: 1em;
+}
+
+a {
+  color: blanchedalmond;
+}
+
+.signature {
+  position: absolute;
+  bottom: 0;
+}

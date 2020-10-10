@@ -117,7 +117,26 @@ class App extends React.Component {
   render() {
   return (
     <div className="App">
-      <h1> Conway's Game Of Life </h1>
+      
+      <div className="header">
+        <div>
+            <h1> Conway's Game Of Life </h1>
+        </div>
+        <div className="button-group">
+          <button className="btn item" onClick={() => this.runSimulation() }> {this.state.running ? "Play" : "Stop!"} </button>
+          <button className="btn item" onClick={() => this.clear() }> Clear </button>
+          <button className="btn item" onClick={() => this.reSeed() }> Re-Seed </button>
+        </div>
+        <div className="generations">
+          <h4 className="item">Generations: {this.state.count}</h4>
+        </div>
+        <div className="speed">
+          <label className="item" htmlFor="speed">Fast - Slow</label>
+          <input className="item" type="range" id="speed" value={this.state.speed}
+                min="50" max="1000" step="50" onChange={this.speedChange}/>
+        </div>
+      </div>
+      
       <table>
         <tbody>
         {
@@ -137,20 +156,10 @@ class App extends React.Component {
         }
         </tbody>
       </table>
-
-      <div className="buttons">
-        <button onClick={() => this.runSimulation() }> {this.state.running ? "Play" : "Stop!"} </button>
-        <button onClick={() => this.clear() }> Clear </button>
-        <button onClick={() => this.reSeed() }> Re-Seed </button>
-      </div>
-
-      <div className="">
-      <p>Generations: {this.state.count}</p>
-        <label htmlFor="speed">Fast - Slow</label>
-        <input type="range" id="speed" value={this.state.speed}
-              min="50" max="1000" step="50" onChange={this.speedChange}/>
-      </div>
-
+     
+      <div className="signature">
+          <p>Made with <span role="img" aria-label="love">&#128153;</span> by <a href="https://github.com/solive93">Sergi Oliveres</a></p>
+        </div>
     </div>
   );
   }
