@@ -34,14 +34,19 @@ class App extends React.Component {
   state = {
     cells: game.state,
     running: false,
-    interval: null
+    interval: null,
+    maxSpeed: 50,
+    minSpeed: 1000,
+    step: 50,
+    speed: undefined,
+    count: 0
   }
 
   runSimulation = () => {
     this.setRunning();
     if(!this.state.running) {
-      const timer = setInterval(this.updateGameState, 200)
-      this.setState({interval: timer})  
+      const timer = setInterval(this.updateGameState, this.state.speed === undefined ? 200 : this.state.speed)
+      this.setState({interval: timer})
     }
     clearInterval(this.state.interval)
   }
@@ -50,6 +55,15 @@ class App extends React.Component {
     const nextState = game.nextGeneration();
       game.state = nextState;
       this.setState({cells: nextState});
+      this.updateCount();  
+
+  }
+  
+  updateCount = () => {
+    this.setState((prevState) => {
+      const newCount = prevState.count + 1
+      return {count: newCount}
+    })
   }
 
   setRunning = () => {
@@ -71,6 +85,18 @@ class App extends React.Component {
         cells
       }
     });
+  }
+
+  speedChange = (event) => {
+    
+  }
+
+  reSeed = () => {
+
+  }  
+
+  clear = () => {
+
   }
 
   render() {
@@ -96,7 +122,20 @@ class App extends React.Component {
         }
         </tbody>
       </table>
-      <button onClick={() => this.runSimulation() }> {this.state.running ? "Stop" : "Play!"} </button>
+
+      <div className="buttons">
+        <button onClick={() => this.runSimulation() }> {this.state.running ? "Stop" : "Play!"} </button>
+        <button onClick={() => this.clear() }> Clear </button>
+        <button onClick={() => this.reSeed() }> Re-Seed </button>
+      </div>
+
+      <div className="">
+      <p>Generations: {this.state.count}</p>
+        <label htmlFor="speed">Fast - Slow</label>
+        <input type="range" id="speed" value={this.state.speed}
+              min="50" max="1000" step="50" onChange={this.speedChange}/>
+      </div>
+
     </div>
   );
   }
