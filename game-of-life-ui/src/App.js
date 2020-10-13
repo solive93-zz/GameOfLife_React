@@ -158,7 +158,7 @@ class App extends React.Component {
       </table>
      
       <div className="signature">
-          <p>Made with <span role="img" aria-label="love">&#128153;</span> by <a href="https://github.com/solive93">Sergi Oliveres</a></p>
+          <p>Coded with <span role="img" aria-label="love">&#128153;</span> by <a href="https://github.com/solive93">Sergi Oliveres</a>. In memory of John Horton Conway, the mind behind the game.</p>
         </div>
     </div>
   );
