@@ -45,7 +45,6 @@ class App extends React.Component {
       const newCount = prevState.count + 1
       return {count: newCount}
     })
-    //console.log(this.state.randomSeededGame.nextGeneration())
   }
 
   setRunning = () => {
@@ -72,9 +71,7 @@ class App extends React.Component {
   }
 
   speedChange = (event) => {
-    this.setState({speed: event.target.value})
-    console.log(event.currentTarget.value)
-    
+    this.setState({speed: event.target.value})    
   }
 
   clear = () => {
