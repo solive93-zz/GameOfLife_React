@@ -114,8 +114,8 @@ class App extends React.Component {
 
   clear = () => {
     const resettedGame = new Game(deadBoard);
-      game.state = resettedGame;
-      this.setState({cells: resettedGame});
+    
+    this.setState({cells: resettedGame.state})
   }
 
   render() {
