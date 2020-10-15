@@ -77,7 +77,10 @@ class App extends React.Component {
   clear = () => {
     const resettedGame = new Game(DEADBOARD);
     
-    this.setState({cells: resettedGame.state})
+    this.setState({
+      cells: resettedGame.state,
+      count: 0
+    })
   }
   
   reSeed = () => {
