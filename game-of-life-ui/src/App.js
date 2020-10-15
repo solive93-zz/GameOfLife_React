@@ -102,7 +102,9 @@ class App extends React.Component {
     });
   }
 
-  speedChange = () => {
+  speedChange = (event) => {
+    this.setState({speed: event.target.value})
+    console.log(event.currentTarget.value)
     
   }
 
