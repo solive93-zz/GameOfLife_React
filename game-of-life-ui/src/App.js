@@ -17,12 +17,11 @@ class App extends React.Component {
     cells: game.state,
     running: true,
     interval: null,
-    maxSpeed: 50,
-    minSpeed: 1000,
-    step: 50,
     speed: 200,
-    count: 0
+    count: 0,
+    currentGameInstance: game
   }
+
 
   runSimulation = () => {
     this.setRunning();
@@ -34,10 +33,11 @@ class App extends React.Component {
   }
 
   updateGameState = () => {
-    const nextState = game.nextGeneration();
-      game.state = nextState;
-      this.setState({cells: nextState});
-      this.updateCount();  
+    const nextState = this.state.currentGameInstance.nextGeneration();
+    
+    this.state.currentGameInstance.state = nextState;
+    this.setState({cells: nextState});
+    this.updateCount();  
   }
   
   updateCount = () => {
@@ -45,6 +45,7 @@ class App extends React.Component {
       const newCount = prevState.count + 1
       return {count: newCount}
     })
+    //console.log(this.state.randomSeededGame.nextGeneration())
   }
 
   setRunning = () => {
@@ -76,7 +77,6 @@ class App extends React.Component {
     
   }
 
-  
   clear = () => {
     const resettedGame = new Game(DEADBOARD);
     
@@ -86,12 +86,24 @@ class App extends React.Component {
   reSeed = () => {
     const randomBoard = this.generateRandomBoard();
     const randomSeededGame = new Game(randomBoard)
-
-    this.setState({cells: randomSeededGame.state})
+    this.setState({
+      currentGameInstance: randomSeededGame,
+      cells: randomSeededGame.state
+    })
   }  
 
   generateRandomBoard = () => {
-    
+    const boardSize = 32;
+    const board = Array()
+    for(let row = 1; row <= boardSize; row++) {
+      const row = Array()
+      board.push(row)
+      for(let col = 1; col <= boardSize; col++) {
+        row.push(Math.round(Math.random()* 0.6))
+      }
+    }
+
+    return board
   }
 
   render() {
