@@ -76,14 +76,22 @@ class App extends React.Component {
     
   }
 
-  reSeed = () => {
-
-  }  
-
+  
   clear = () => {
     const resettedGame = new Game(DEADBOARD);
     
     this.setState({cells: resettedGame.state})
+  }
+  
+  reSeed = () => {
+    const randomBoard = this.generateRandomBoard();
+    const randomSeededGame = new Game(randomBoard)
+
+    this.setState({cells: randomSeededGame.state})
+  }  
+
+  generateRandomBoard = () => {
+    
   }
 
   render() {
