@@ -119,13 +119,13 @@ class App extends React.Component {
           <button className="btn item" onClick={() => this.clear() }> Clear </button>
           <button className="btn item" onClick={() => this.reSeed() }> Re-Seed </button>
         </div>
-        <div className="generations">
-          <h4 className="item">Generations: {this.state.count}</h4>
-        </div>
         <div className="speed">
           <label className="item" htmlFor="speed">Fast - Slow</label>
           <input className="item" type="range" id="speed" value={this.state.speed}
                 min="50" max="1000" step="50" onChange={this.speedChange}/>
+        </div>
+        <div className="generations">
+          <h4 className="item">Generations: {this.state.count}</h4>
         </div>
       </div>
       
